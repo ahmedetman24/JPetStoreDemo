@@ -152,6 +152,7 @@ Here is the complete test execution flow:
   - Change **"chrome"** with one of the following:
     - **"firefox"**: to run tests on firefox browser
     - **"edge"**: to run tests on edge browser
+    - "headless": to run tests with headless (choose it if you'll run test from pipeline)
 - Step definitions use dynamic variables:
   - **static String userID = "", password = "", firstName = "";**
   - If registration fails, the test falls back to alternative user credentials from the feature file.

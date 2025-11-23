@@ -6,6 +6,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -26,7 +27,7 @@ public class TestBase extends AbstractTestNGCucumberTests
 
     //@Parameters({"browser"})
     @BeforeClass
-    public static void openBrowser(@Optional("chrome") String browser) {
+    public static void openBrowser(@Optional("headless") String browser) {
 
         switch (browser.toLowerCase()){
             case "firefox":
@@ -34,6 +35,13 @@ public class TestBase extends AbstractTestNGCucumberTests
                 break;
             case "edge":
                 driver = new EdgeDriver();
+                break;
+            case "headless":
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-dev-shm-usage");
+                options.addArguments("--headless=new");
+                driver = new ChromeDriver(options);
                 break;
             default:
                 driver = new ChromeDriver();
