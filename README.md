@@ -149,10 +149,11 @@ Here is the complete test execution flow:
   - Open _"TestBase.java"_ class, you can find it at _"src/test/java/testcases"_
   - Go to the following line:
     ![Browser](assets/browser.png)
-  - Change **"chrome"** with one of the following:
+  - Change **"headless"** with one of the following:
     - **"firefox"**: to run tests on firefox browser
     - **"edge"**: to run tests on edge browser
-    - "headless": to run tests with headless (choose it if you'll run test from pipeline)
+    - **"headless"**: to run tests with headless (choose it if you'll run test from pipeline)
+    - **Any other value**: will run tests on chrome browser
 - Step definitions use dynamic variables:
   - **static String userID = "", password = "", firstName = "";**
   - If registration fails, the test falls back to alternative user credentials from the feature file.
