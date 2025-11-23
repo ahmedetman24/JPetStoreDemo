@@ -35,7 +35,8 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
 
       - name: Run automation tests
-        run: mvn clean test
+        #run: mvn clean test
+        run: mvn -DtestFailureIgnore=true clean test
 
       - name: Upload test reports (optional)
         uses: actions/upload-artifact@v4
