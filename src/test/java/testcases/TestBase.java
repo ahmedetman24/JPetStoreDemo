@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -35,6 +36,9 @@ public class TestBase extends AbstractTestNGCucumberTests
                 break;
             case "edge":
                 driver = new EdgeDriver();
+                break;
+            case "safari":
+                driver = new SafariDriver();
                 break;
             case "headless":
                 ChromeOptions options = new ChromeOptions();

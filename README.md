@@ -151,7 +151,8 @@ Here is the complete test execution flow:
     ![Browser](assets/browser.png)
   - Change **"headless"** with one of the following:
     - **"firefox"**: to run tests on firefox browser
-    - **"edge"**: to run tests on edge browser
+    - **"edge"**: to run tests on edge browser (for Windows OS only)
+    - **"safari"**: to run tests on safari browser (for macOS only)
     - **"headless"**: to run tests with headless (choose it if you'll run test from pipeline)
     - **Any other value**: will run tests on chrome browser
 - Step definitions use dynamic variables:
