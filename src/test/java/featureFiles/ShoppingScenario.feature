@@ -4,7 +4,7 @@ Feature: Shopping Scenario
   Scenario Outline: register a new user
     Given user opens the home page using "<url>"
     When user go to sign in page
-    And make registration using "<countryCode>", "<firstNumber>", "<secondNumber>", "<secondNumberLength>", "<numberLength>"
+    And make registration using "<countryCode>", "<firstNumber>", "<secondNumber>", "<secondNumberLength>", "<numberLength>", "<url>"
     Then home page should be displaying expected "<url>"
 
     Examples:
@@ -19,7 +19,7 @@ Feature: Shopping Scenario
 
     Examples:
       | url                                                  | alternativeUserID | alternativeUserPassword | alternativeFirstName | petName |
-      | https://petstore.octoperf.com/actions/Catalog.action | ahmedetman        | 123456                  | Ahmed                |cats     |
+      | https://petstore.octoperf.com/actions/Catalog.action | ahmedetman24       | 123456                  | Ahmed                | cats    |
 
   Scenario Outline: add pet into cart
     Given target pet page is displaying "<petName>"

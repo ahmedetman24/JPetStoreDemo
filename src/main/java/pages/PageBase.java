@@ -1,5 +1,6 @@
 package pages;
 
+import com.github.javafaker.Faker;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -210,6 +211,32 @@ public class PageBase
         Then Number should be like this: +2010xxxxxxxx, +2011xxxxxxxx, +2012xxxxxxxx or +2015xxxxxxxx
          */
         return countryCode+ firstNumber+ RandomStringUtils.random(secondNumberLength, secondNumber)+ RandomStringUtils.randomNumeric(numberLength);
+    }
+
+    protected static String generateFakeUserData(String userDataContent)
+    {
+        Faker fakeData = new Faker();
+        String requiredData = "";
+
+        switch (userDataContent.toLowerCase())
+        {
+            case "firstname":
+                requiredData = fakeData.name().firstName();
+                break;
+            case "lastname":
+                requiredData = fakeData.name().lastName();
+                break;
+            case "email":
+                requiredData = fakeData.internet().emailAddress();
+                break;
+            case "password":
+                requiredData = fakeData.number().digits(8);
+                break;
+            case "country":
+                requiredData = fakeData.country().name();
+                break;
+        }
+        return requiredData;
     }
 
     protected static void selectFromDropDownList(WebElement dropDownList, String listItem)

@@ -22,6 +22,7 @@ public class SignInPage extends PageBase
     public void signIn(String userID, String password, WebDriverWait wait, Actions actions, WebDriver driver)
     {
         writeText(driver.findElement(userNameTxtBox), wait, userID);
+        //System.out.println("User Name Text Box displaying?"+driver.findElement(userNameTxtBox).isDisplayed());
         writeText(driver.findElement(passwordTxtBox), wait, password);
         moveAndClick(driver.findElement(loginBtn), actions);
     }

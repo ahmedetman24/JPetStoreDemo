@@ -10,7 +10,7 @@ public class HomePage extends PageBase {
 
     By signInBtn = By.linkText("Sign In");
 
-    public void goToSignInPage(String url, WebDriver driver, Actions actions, WebDriverWait wait)
+    public void  goToSignInPage(String url, WebDriver driver, Actions actions, WebDriverWait wait)
     {
         driver.get(url);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(signInBtn)));

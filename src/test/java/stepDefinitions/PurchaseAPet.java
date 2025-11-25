@@ -42,16 +42,26 @@ public class PurchaseAPet extends TestBase
         Assert.assertTrue(Objects.requireNonNull(driver.getCurrentUrl()).contains("newAccountForm"));
     }
 
-    @When("^make registration using \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
-    public void make_registration_using(String countryCode, String firstNumber, String secondNumber, String secondNumberLength, String numberLength)
+    @When("^make registration using \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
+    public void make_registration_using(String countryCode, String firstNumber, String secondNumber, String secondNumberLength, String numberLength, String url)
     {
         //Register a new user
         registrationPage = new RegistrationPage();
         String[] loginData = registrationPage.registerNewUser(wait, driver, actions, countryCode, firstNumber, secondNumber, Integer.parseInt(secondNumberLength),
                 Integer.parseInt(numberLength));
-        userID = loginData[0];
-        password = loginData[1];
-        firstName = loginData[2];
+
+        // If current URL = Expected URL (Registration done successfully), then pass registered data to log in with, otherwise, pass default data
+
+        //System.out.println("Outside if condition");
+        if(Objects.equals(driver.getCurrentUrl(), url))
+        {
+            //System.out.println("inside if condition");
+            userID = loginData[0];
+            password = loginData[1];
+            firstName = loginData[2];
+        }
+
+        //System.out.println("User ID: "+userID+"\nPassword: "+password+"\nFirst Name: "+firstName);
     }
 
     @Then("^home page should be displaying expected \"([^\"]*)\"$")
@@ -71,7 +81,6 @@ public class PurchaseAPet extends TestBase
         homePage.goToSignInPage(url, driver, actions, wait);
         Assert.assertTrue(Objects.requireNonNull(driver.getCurrentUrl()).contains("signonForm"));
 
-        //Check if registration testcase failed, then go to home page
         if(Objects.equals(userID, "") || Objects.equals(password, "") || Objects.equals(firstName, ""))
         {
             // Alternative User ID and password will be used in case of failed registration, this account is registered before
@@ -79,12 +88,14 @@ public class PurchaseAPet extends TestBase
             password = alternativeUserPassword;
             firstName = alternativeFirstName;
         }
+        //System.out.println("User ID: "+userID+"\nPassword: "+password+"\nFirst Name: "+firstName);
     }
 
     @When("^login with valid data$")
-    public void login_with_valid_data()
-    {
+    public void login_with_valid_data() throws InterruptedException {
         // Sign in either using registered data or using alternative data
+        Thread.sleep(Long.parseLong("3000"));
+
         signInPage = new SignInPage();
         signInPage.signIn(userID, password, wait, actions, driver);
     }
